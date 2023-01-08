@@ -15,8 +15,8 @@ import { valid, invalid, getStats } from './Contract';
 function App() {
   const [ connectedAccount, setConnectedAccount ] = useState("Connect");
   const [ client, setClient ] = useState();
-  const [ valid, setValid ] = useState(0);
-  const [ invalid, setInvalid ] = useState(0);
+  const [ validNo, setValid ] = useState(0);
+  const [ invalidNo, setInvalid ] = useState(0);
   const [ total, setTotal ] = useState(0);
 
   // Checking if browser wallet is available && getting most recently selected account
@@ -54,15 +54,13 @@ function App() {
         client.sendTransaction(connectedAccount, AccountTransactionType.Transfer, {
           amount: new CcdAmount(amount),
           toAddress: new AccountAddress(address)
+        }).then(() => {
+          // Incrementing valid tracsaction counter in the smart contract
+          valid(client, connectedAccount)
+        }).catch(() => {
+          // Transaction could not be sent
+          alert("Something went wrong! Try again...")
         })
-          .then(() => {
-            // Incrementing valid tracsaction counter in the smart contract
-            valid(client, connectedAccount)
-          })
-          .catch(() => {
-            // Transaction could not be sent
-            alert("Something went wrong! Try again...")
-          })
       })
       .catch(() => {
         // User is not 18 years old
@@ -129,12 +127,12 @@ function App() {
         <div className="grid">
           <div className="card">
             <p>
-              Valid Transactions <span>{valid}</span>
+              Valid Transactions <span>{validNo}</span>
             </p>
           </div>
           <div className="card">
             <p>
-              Invalid Transactions <span>{invalid}</span>
+              Invalid Transactions <span>{invalidNo}</span>
             </p>
           </div>
           <div className="card">

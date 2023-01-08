@@ -12,7 +12,9 @@ export async function valid(client, connectedAccount) {
         },
         receiveName: 'count_tracker.validincrement',
         maxContractExecutionEnergy: 30000n,
-    })
+    }).then(() => {
+        alert("Transaction Done, Updated the Contract. Please Refresh!")
+    }).catch(alert)
 }
 
 export async function invalid(client, connectedAccount) {
@@ -24,7 +26,9 @@ export async function invalid(client, connectedAccount) {
         },
         receiveName: 'count_tracker.invalidincrement',
         maxContractExecutionEnergy: 30000n,
-    })
+    }).then(() => {
+        alert("Transaction Done, Updated the Contract. Please Refresh!")
+    }).catch(alert)
 }
 
 export async function getStats(client, str) {
