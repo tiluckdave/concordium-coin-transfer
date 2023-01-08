@@ -155,6 +155,10 @@ button:hover {
     padding: 4rem;
   }
 
+  h1{
+    font-size: 1.5rem;
+  }
+
   .flexx {
     width: 100vw;
   }
@@ -170,7 +174,9 @@ button:hover {
     padding: 1rem 2.5rem;
   }
 
-  
+  input {
+    width: 80vw;
+  }
 
   .center {
     padding: 8rem 0 6rem;
