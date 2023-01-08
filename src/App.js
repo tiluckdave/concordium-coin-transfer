@@ -42,7 +42,7 @@ function App() {
   }
 
   async function send(client, amount, address) {
-    amount = BigInt(amount);
+    amount = BigInt(Math.round(amount * 1e6));
     const statementBuilder = new IdStatementBuilder().addMinimumAge(18);
     const statement = statementBuilder.getStatement();
     const challenge = "AAAAAAAA"
@@ -127,17 +127,17 @@ function App() {
         <div className="grid">
           <div className="card">
             <p>
-              Valid Transactions <span>{validNo}</span>
+              Valid Transactions <span>{parseInt(validNo, 16)}</span>
             </p>
           </div>
           <div className="card">
             <p>
-              Invalid Transactions <span>{invalidNo}</span>
+              Invalid Transactions <span>{parseInt(invalidNo, 16)}</span>
             </p>
           </div>
           <div className="card">
             <p>
-              Total Transactions <span>{total}</span>
+              Total Transactions <span>{parseInt(total, 16)}</span>
             </p>
           </div>
         </div>
